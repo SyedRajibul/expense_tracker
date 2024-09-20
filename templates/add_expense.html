@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Add Expense</h2>
+<form method="post">
+  <input type="number" name="amount" placeholder="Amount" required step=".01">
+  
+  <select name="category-id">
+      {% for category in categories %}
+          <option value="{{ category[0] }}">{{ category[1] }}</option>
+      {% endfor %}
+  </select>
+
+  <input type="date" name="date" required>
+
+  <button type="submit">Add Expense</button>
+</form>
+
+<a href="{{ url_for('home') }}">Back to Home</a>
+
+{% endblock %}

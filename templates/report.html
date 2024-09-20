@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Monthly Expense Report</h2>
+
+<table>
+  <tr>
+      <th>Category</th>
+      <th>Total Amount</th>
+  </tr>
+
+  {% for row in report_data %}
+  <tr>
+      <td>{{ row[0] }}</td> 
+      <td>{{ row[1] }}</td> 
+  </tr> 
+  {% endfor %}
+
+</table>
+
+<a href="{{ url_for('home') }}">Back to Home</a>
+
+{% endblock %}

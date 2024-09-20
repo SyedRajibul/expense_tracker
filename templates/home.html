@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Your Expenses</h2>
+<a href="{{ url_for('add_expense') }}">Add Expense</a>
+
+<table>
+  <tr>
+      <th>Amount</th>
+      <th>Category</th>
+      <th>Date</th>
+      <th>Actions</th>
+  </tr>
+
+  {% for expense in expenses %}
+  <tr>
+      <td>{{ expense[1] }}</td>
+
+      {# Find the category name from the categories list #}
+      {% set category_name = '' %}
+      {% for category in categories %}
+          {% if category[0] == expense[2] %}
+              {% set category_name = category[1] %}
+          {% endif %}
+      {% endfor %}
+
+      <td>{{ category_name }}</td> 
+      <td>{{ expense[3] }}</td> 
+      <td>
+          <a href="{{ url_for('edit_expense', id=expense[0]) }}">Edit</a> |
+          <a href="{{ url_for('delete_expense', id=expense[0]) }}">Delete</a>
+      </td> 
+  </tr>
+  {% endfor %}
+  
+</table>
+
+{% endblock %}
